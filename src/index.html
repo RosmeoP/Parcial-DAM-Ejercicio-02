@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://fakestoreapi.com; img-src 'self' data: https://fakestoreapi.com https:;">
+    <title>NOSTRA - Fashion E-Commerce Catalog</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- 1. Barra de Promoción Superior Estilo Dribbble -->
+    <div class="promo-top-bar">
+        Sign up and GET 20% OFF for your first order. <a id="btn-promo">Sign up now</a>
+    </div>
+
+    <!-- 2. Header de Navegación -->
+    <header class="app-header">
+        <div class="header-container">
+            <!-- Logotipo NOSTRA -->
+            <div class="brand" id="brand-home">
+                <span class="brand-title">NOSTRA</span>
+            </div>
+
+            <!-- Categorías de Navegación Rápida -->
+            <ul class="nav-links">
+                <li><button class="nav-link-btn active" data-category="">Shop</button></li>
+                <li><button class="nav-link-btn" data-category="women's clothing">Women</button></li>
+                <li><button class="nav-link-btn" data-category="men's clothing">Men</button></li>
+                <li><button class="nav-link-btn" data-category="jewelery">Jewelery</button></li>
+                <li><button class="nav-link-btn" data-category="electronics">Electronics</button></li>
+            </ul>
+
+            <!-- Acciones de Cabecera: Buscador y Perfil/Bolsa -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="input-search" placeholder="Search products..." autocomplete="off">
+                </div>
+
+                <div class="user-actions">
+                    <button class="icon-button" id="btn-cart" title="Shopping Bag">
+                        👜
+                        <span class="cart-count-badge" id="cart-badge">0</span>
+                    </button>
+                    <button class="icon-button" title="User Profile">
+                        👤
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. Contenedor Principal (Sidebar de Filtros + Catálogo de Productos) -->
+    <main class="main-wrapper">
+        
+        <!-- Barra Lateral de Filtros (Sidebar) -->
+        <aside class="sidebar">
+            <div class="breadcrumb">
+                Home &nbsp;&gt;&nbsp; <span class="current">Browse Products</span>
+            </div>
+
+            <!-- Filtro 1: Categorías -->
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Category</span>
+                </div>
+                <div class="filter-options-list" id="category-radio-group">
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="category" value="" checked> All Categories</span>
+                        <span class="count" id="count-all">(20)</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="category" value="women's clothing"> Women's Clothing</span>
+                        <span class="count" id="count-women">(6)</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="category" value="men's clothing"> Men's Clothing</span>
+                        <span class="count" id="count-men">(4)</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="category" value="jewelery"> Jewelery</span>
+                        <span class="count" id="count-jewelery">(4)</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="category" value="electronics"> Electronics</span>
+                        <span class="count" id="count-electronics">(6)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Filtro 2: Rango de Precio -->
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Price</span>
+                </div>
+                <div class="filter-options-list" id="price-radio-group">
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="price-range" value="" checked> All Prices</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="price-range" value="under-50"> Under $50 USD</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="price-range" value="50-100"> $50 - $100 USD</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="price-range" value="over-100"> Over $100 USD</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Filtro 3: Calificación Mínima -->
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Rating</span>
+                </div>
+                <div class="filter-options-list" id="rating-radio-group">
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="rating-min" value="0" checked> All Ratings</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="rating-min" value="4"> ★★★★☆ (4.0+)</span>
+                    </label>
+                    <label class="filter-checkbox-label">
+                        <span><input type="radio" name="rating-min" value="3"> ★★★☆☆ (3.0+)</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Botón de Limpiar Todos los Filtros -->
+            <button type="button" class="btn-clear-all" id="btn-clear-all">
+                Clear all filters
+            </button>
+        </aside>
+
+        <!-- Área del Catálogo de Productos -->
+        <section class="catalog-area">
+            
+            <!-- Barra Superior del Catálogo: Contador y Ordenación -->
+            <div class="catalog-top-bar">
+                <div class="results-count-text">
+                    Showing <strong id="showing-count">0</strong> results from total <strong id="total-count">0</strong>
+                </div>
+
+                <div class="sort-select-wrapper">
+                    <span>Sort by</span>
+                    <select id="select-sort" class="sort-select">
+                        <option value="popularity">Popularity ⌵</option>
+                        <option value="price-asc">Price: Low to High</option>
+                        <option value="price-desc">Price: High to Low</option>
+                        <option value="rating-desc">Rating: Highest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Pastillas de Filtros Activos (Applied Filters) -->
+            <div class="applied-filters-bar" id="applied-filters-bar">
+                <span class="applied-filters-label">Applied Filters:</span>
+                <div id="applied-tags-container" style="display: inline-flex; gap: 0.5rem; flex-wrap: wrap;"></div>
+            </div>
+
+            <!-- Indicador de Carga -->
+            <div id="loading" class="d-none">
+                <div class="spinner"></div>
+                <span>Loading products from FakeStore API...</span>
+            </div>
+
+            <!-- Mensaje de Sin Resultados -->
+            <div id="feedback-message" class="feedback-box d-none">
+                <div class="feedback-icon">🛍️</div>
+                <h3 class="feedback-title">No products found</h3>
+                <p class="feedback-text">Try adjusting your filters or search terms to find what you're looking for.</p>
+            </div>
+
+            <!-- Grid de Productos -->
+            <div class="products-grid" id="products-grid"></div>
+
+            <!-- Plantilla de Tarjeta de Producto -->
+            <template id="template-product">
+                <article class="product-card">
+                    <div class="product-img-wrapper">
+                        <img src="" alt="" loading="lazy">
+                        <span class="badge-sale">SALE</span>
+                        <span class="badge-rating"><span class="star">★</span> <span class="rate-num">4.5</span></span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header-row">
+                            <h3 class="product-title">Product Name</h3>
+                            <div class="product-price-box">
+                                <span class="product-price">$85</span>
+                                <span class="product-price-old">$120</span>
+                            </div>
+                        </div>
+                        <span class="product-subtitle">Category • 2 Colors</span>
+                    </div>
+                </article>
+            </template>
+
+            <!-- Paginación Estilo Dribbble -->
+            <div class="pagination-container" id="pagination-container">
+                <button class="page-btn" id="btn-page-prev" disabled>&lt; Previous</button>
+                <div id="pagination-numbers" style="display: flex; gap: 0.35rem;"></div>
+                <button class="page-btn" id="btn-page-next">Next &gt;</button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Modal de Detalles del Producto -->
+    <div id="modal-details" class="modal-overlay d-none">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Product Details</h3>
+                <button id="btn-close-modal" class="btn-close-modal" title="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-img-frame">
+                    <img id="modal-img" src="" alt="">
+                </div>
+                <div class="modal-info-box">
+                    <span id="modal-tag" class="modal-tag">WOMEN'S CLOTHING</span>
+                    <h2 id="modal-title" class="modal-title-main">Title of the product</h2>
+                    <div id="modal-rating" class="modal-rating-score">★ 4.8 / 5.0 (250 reviews)</div>
+                    <div id="modal-price" class="modal-price-tag">$0.00</div>
+                    <p id="modal-desc" class="modal-desc-text">Description goes here...</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="btn-modal-notify" class="btn-add-bag">
+                    Add to Bag
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de la Aplicación -->
+    <script src="js/app.js"></script>
+</body>
+</html>

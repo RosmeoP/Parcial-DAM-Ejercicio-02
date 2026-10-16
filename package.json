@@ -1,0 +1,23 @@
+{
+  "name": "novastore-desktop",
+  "productName": "NovaStore Desktop Catalog",
+  "version": "1.0.0",
+  "description": "Aplicación de escritorio desarrollada con Electron para consultar y filtrar el catálogo de productos de FakeStore API (Parcial 2 - Ejercicio 02).",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "electron",
+    "fakestore-api",
+    "desktop-app",
+    "e-commerce",
+    "rest-api"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^44.7.2"
+  }
+}
